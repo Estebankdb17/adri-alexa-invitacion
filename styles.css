@@ -1,0 +1,381 @@
+:root{
+  --bg: #7f8d73;         /* verde oliva fondo exterior */
+  --paper: #f7f4ee;      /* crema */
+  --ink: #1f1f1f;
+  --muted: #6a6a6a;
+  --accent: #6f7f62;     /* oliva botones */
+  --accent2: #2a2a2a;
+  --radius: 18px;
+  --shadow: 0 14px 40px rgba(0,0,0,.20);
+}
+
+*{ box-sizing:border-box; }
+html,body{ height:100%; }
+body{
+  margin:0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+}
+
+.page{
+  min-height:100%;
+  display:flex;
+  justify-content:center;
+  padding: 26px 14px;
+}
+
+/* ========= TARJETA ========= */
+.card{
+  width: min(420px, 100%);
+  background: var(--paper);
+  border-radius: var(--radius);
+  overflow:hidden;
+  box-shadow: var(--shadow);
+
+  /* necesario para decoración interna */
+  position: relative;
+}
+
+/* ========= HOJAS SUTILES (3 por lado) =========
+   - Dentro de la tarjeta
+   - Sin repeat
+   - Sutiles por detrás del contenido
+*/
+.card::before,
+.card::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  z-index: 1;
+
+  opacity: 1; 
+  filter: saturate(.95) contrast(1.05);
+
+  background-repeat: no-repeat;
+
+  /* 3 capas (3 “apariciones”) */
+  background-size:
+    140px auto,
+    120px auto,
+    130px auto;
+}
+
+/* IZQUIERDA */
+.card::before{
+  background-image:
+    url("assets/leaves-left.png"),
+    url("assets/leaves-left.png"),
+    url("assets/leaves-left.png");
+    url("assets/leaves-left.png");
+    url("assets/leaves-left.png");
+
+  background-position:
+    left -22px top 160px,
+    left -28px top 980px,
+    left -20px top 1760px;
+    left -20px top 2350px;
+    left -25px top 2960px;
+}
+
+/* DERECHA */
+.card::after{
+  background-image:
+    url("assets/leaves-right.png"),
+    url("assets/leaves-right.png"),
+    url("assets/leaves-right.png");
+    url("assets/leaves-right.png");
+    url("assets/leaves-right.png");
+
+  background-position:
+    right -22px top 320px,
+    right -28px top 1220px,
+    right -20px top 2060px;
+    right -28px top 2640px,
+    right -20px top 3270px;
+}
+
+/* Todo el contenido por encima de las hojas */
+.card > *{
+  position: relative;
+  z-index: 2;
+}
+
+/* ========= HERO ========= */
+.hero{ position:relative; }
+.hero__img{
+  width:100%;
+  height: 520px;
+  object-fit: cover;
+  display:block;
+  filter: saturate(.95) contrast(1.02);
+}
+.hero__overlay{
+  position:absolute; inset:0;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+  text-align:center;
+  padding: 26px 18px 22px;
+  background: linear-gradient(to top, rgba(0,0,0,.55), rgba(0,0,0,0));
+  color:#fff;
+}
+.hero__kicker{ letter-spacing:.12em; text-transform:uppercase; font-size:1rem; opacity:.9; margin:0 0 6px; }
+.hero__title{
+  font-family: "Allura", cursive;
+  font-weight: 400;
+  font-size: 4rem;
+  margin:0;
+  line-height:1.0;
+  letter-spacing: .2px;
+}
+.hero__title span{
+  font-family: "Cormorant Garamond", serif;
+  font-weight: 500;
+  font-size: 2rem;
+  opacity: .95;
+  margin: 0 6px;
+}
+.hero__date{ margin:8px 0 0; opacity:.95; }
+
+/* ========= SECCIONES ========= */
+.section{
+  padding: 22px 18px;
+  position: relative;
+}
+.section--quote{ padding: 34px 18px; text-align:center; }
+.section--countdown{ text-align:center; }
+.section--footer{ text-align:center; padding: 28px 18px 34px; }
+
+.quote{
+  margin:0;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.25rem;
+  line-height:1.35;
+}
+.quote__ref{ display:block; margin-top:8px; font-size:.95rem; opacity:.85; }
+
+.h2{
+  margin:0 0 10px;
+  font-family: "Cormorant Garamond", serif;
+  font-weight: bold;
+  font-size: 2.5rem;
+  text-align:center;
+  letter-spacing: .2px;
+}
+.h3{
+  margin:0 0 6px;
+  font-family: "Cormorant Garamond", serif;
+  font-weight: 600;
+  font-size: 1.8rem;
+  text-align:center;
+}
+
+.center{ text-align:center; }
+.muted{ color: var(--muted); }
+.tiny{ font-size:.86rem; }
+.mt8{ margin-top:8px; }
+
+/* ========= GALERÍA ========= */
+.grid{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.photo-full{
+  width: 100%;
+  margin: 0;
+}
+
+.photo-full img{
+  width: 100%;
+  height: auto;          /* se ve toda la altura */
+  display: block;
+  border-radius: 16px;
+}
+
+.img{
+  width:100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 14px;
+}
+
+/* ========= DIVIDER ========= */
+.divider{
+  height:1px;
+  background: rgba(0,0,0,.10);
+  margin: 18px 0;
+}
+
+.info{ text-align:center; }
+
+/* ========= BOTONES ========= */
+.btn{
+  display:inline-block;
+  margin-top: 10px;
+  padding: 11px 14px;
+  border-radius: 999px;
+  text-decoration:none;
+  border: 1px solid rgba(0,0,0,.14);
+  color: var(--accent2);
+  background: rgba(255,255,255,.35);
+  font-weight: 500;
+}
+.btn:hover{ filter: brightness(.98); }
+.btn--primary{
+  background: var(--accent);
+  color: #fff;
+  border-color: rgba(255,255,255,.0);
+}
+
+/* ========= COUNTDOWN ========= */
+.countdown{
+  display:flex;
+  justify-content:center;
+  gap: 10px;
+  margin-top: 10px;
+}
+.cd{
+  width: 78px;
+  padding: 10px 8px;
+  border-radius: 14px;
+  background: rgba(255,255,255,.55);
+  border: 1px solid rgba(0,0,0,.08);
+}
+.cd span{
+  display:block;
+  font-size: 1.35rem;
+  font-weight: 600;
+}
+.cd small{ color: var(--muted); }
+
+/* ========= ITINERARIO ========= */
+.timeline{
+  list-style:none;
+  padding:0;
+  margin: 12px 0 0;
+  display:flex;
+  flex-direction:column;
+  gap: 10px;
+}
+.timeline li{
+  display:flex;
+  gap: 12px;
+  align-items:baseline;
+  padding: 10px 12px;
+  border-radius: 14px;
+  background: rgba(255,255,255,.55);
+  border: 1px solid rgba(0,0,0,.08);
+}
+.timeline li span{
+  min-width: 56px;
+  font-weight: 600;
+}
+
+/* ========= MAPAS ========= */
+.map{
+  margin-top: 12px;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid rgba(0,0,0,.08);
+  background: rgba(255,255,255,.6);
+}
+.bus{ text-align:center; }
+
+/* ========= FOOTER ========= */
+.script{
+  font-family: "Cormorant Garamond", serif;
+  font-size: 2.0rem;
+  margin: 0 0 6px;
+}
+
+/* ========= MODAL ========= */
+.modal{
+  width: min(520px, 92vw);
+  border: none;
+  border-radius: 16px;
+  padding: 0;
+  box-shadow: var(--shadow);
+}
+.modal::backdrop{ background: rgba(0,0,0,.45); }
+
+.modal__header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding: 14px 14px 10px;
+  border-bottom: 1px solid rgba(0,0,0,.08);
+  background: #fff;
+}
+.iconbtn{
+  border:none;
+  background: transparent;
+  font-size: 1.2rem;
+  padding: 8px 10px;
+  cursor:pointer;
+}
+
+.gform{ display:block; border:0; border-radius: 0 0 16px 16px; }
+
+/* ========= RESPONSIVE ========= */
+@media (max-width: 380px){
+  .hero__img{ height: 480px; }
+  .grid{ grid-template-columns: 1fr; }
+  .img{ height: 240px; }
+  .countdown{ gap: 8px; }
+  .cd{ width: 72px; }
+}
+
+/* Ajuste hojas en móvil */
+@media (max-width: 520px){
+  .card::before,
+  .card::after{
+    opacity: 0.28;
+    background-size:
+      105px auto,
+      95px auto,
+      100px auto;
+  }
+
+  .card::before{
+    background-position:
+      left -16px top 140px,
+      left -20px top 860px,
+      left -14px top 1560px;
+  }
+
+  .card::after{
+    background-position:
+      right -16px top 280px,
+      right -20px top 1060px,
+      right -14px top 1860px;
+  }
+}
+
+/* Centrado global dentro de secciones */
+.section{
+  text-align: center;
+}
+
+/* Elementos que no respetan el centrado por defecto */
+.btn, button.btn{
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Itinerario: lo dejamos legible pero centrado */
+.timeline li{
+  justify-content: center;
+  text-align: left;              /* el texto dentro se lee mejor */
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 330px;
+}
+
+/* Si algún párrafo quieres centrado sí o sí */
+.info, .bus{
+  text-align: center;
+}
+
