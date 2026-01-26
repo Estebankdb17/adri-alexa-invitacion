@@ -391,14 +391,6 @@ body{
 .stay .h3{ margin-bottom: 6px; }
 .stay p{ margin: 6px 0 0; }
 
-/* Utilidad de margen */
-.mt12{ margin-top: 12px; }
-
-@media (max-width: 380px){
-  .h2--single{
-    font-size: 2.05rem; /* asegura que siga entrando en pantallas muy pequeñas */
-  }
-}
 
 
 
