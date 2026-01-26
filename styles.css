@@ -394,17 +394,12 @@ body{
 /* Utilidad de margen */
 .mt12{ margin-top: 12px; }
 
-/* Forzar el H2 a una sola línea */
-.h2--single{
-  white-space: nowrap;
-  font-size: 2.25rem; /* un pelín más pequeño para que entre */
-}
-
 @media (max-width: 380px){
   .h2--single{
     font-size: 2.05rem; /* asegura que siga entrando en pantallas muy pequeñas */
   }
 }
+
 
 
 
